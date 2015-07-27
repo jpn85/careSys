@@ -63,14 +63,17 @@ public void load() throws IOException
 	Profile aCarePlan2 = new Profile(careTimes, languagePref2, sexPref, agePref, personalCare2, domesticCare);
 	
 	CareStaff aCareStaff = new CareStaff(null, aCarePlan2);
-	
+	StaffList aStafflist = new StaffList();
+	aStafflist.addCareStaff(aCareStaff);
+	CareStaff aCareStaff2 = new CareStaff(null, aCarePlan2);
+	aStafflist.addCareStaff(aCareStaff2);
 	
 	
 	languagePref2.addLanguages("English");
 	
 	Matching match = new Matching(aServiceUser, aStafflist);
     
-
+//	System.out.println(aStafflist.toString());
 
       
     }

@@ -11,7 +11,7 @@ import person.Person;
  *List of Service Users
  * @author Jack
  */
-public class UserList {
+public class UserList  {
 
     //attributes
 
@@ -25,7 +25,7 @@ public class UserList {
 
     UserList()
     {
-        serviceUsers = new HashSet<Person>();
+        serviceUsers = new ArrayList<Person>();
 
     }
 

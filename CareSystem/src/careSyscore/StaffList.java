@@ -5,8 +5,10 @@
 
 package careSyscore;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+
 import person.Person;
 
 /**
@@ -22,7 +24,7 @@ public class StaffList {
 
     StaffList()
     {
-        staffList = new HashSet<Person>();
+        staffList = new ArrayList<Person>();
         //4
 
     }

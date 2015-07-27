@@ -31,6 +31,26 @@ public class Matching
 	public Matching(ServiceUser aServiceUser, StaffList aStaffList) {
 		theServiceUser = aServiceUser;
 		theStaffList = aStaffList;
+		
+//		for (Person aPerson : theStaffList)
+//			
+//		{
+//			System.out.println(theCareStaff);
+//		}
+		
+		
+      StringBuilder result = null;
+      Iterator<Person> iterator = theStaffList.iterator();
+
+      while (iterator.hasNext())
+      {
+          theCareStaff = iterator.next();
+          String personString = theCareStaff.toString();
+          result = result.append(personString).append("\r\n");
+          System.out.println(result);
+
+      }
+		
 
 	}
 
