@@ -5,6 +5,9 @@
 
 package careSyscore;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import person.*;
 import profile.*;
 
@@ -13,41 +16,36 @@ import profile.*;
  *
  * @author Jack
  */
-public class ServiceUser extends Person  
+public class ServiceUser  implements Serializable
 {
     //attributes
     /**
      * the person who is a serviceUser
      */
-    public Person person;
-    public Profile profile;
-
-    public Profile getProfile()
-    {
-        return profile;
-    }
-
-    public void setCareplan(Profile aprofile)
-    {
-        this.profile = aprofile;
-    }
+//    public CareTimes careTimes;
 
 //constructor
-    public ServiceUser(Person aPerson, Profile aProfile)
-    {
-        person = aPerson;
-        profile = aProfile;
-//        load();
-    }
-
-//    public void load()
+//    public ServiceUser(Name aName,Address anAddress, Sex aSex, Date aDob, TelephoneNumber aNumber, Language aLanguages, 
+//    		SexPref aSexPref, AgePref anAgePref, DomesticCare aDomesticCare, PersonalCare apersonalCare, CareTimes aCareTimes)
 //    {
-//        UserList aUserList = new UserList();
-//
+//        super(aName, anAddress,  aSex,  aDob,  aNumber,  aLanguages, 
+//        		 aSexPref,  anAgePref,  aDomesticCare,  apersonalCare);
+//    	careTimes= aCareTimes;
 //    }
-//
-//
 
+	public ServiceUser()
+	{
+		
+	}
+
+
+//	public CareTimes getCareTimes() {
+//		return careTimes;
+//	}
+//
+//	public void setCareTimes(CareTimes careTimes) {
+//		this.careTimes = careTimes;
+//	}
 
 
 

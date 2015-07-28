@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package careSyscore;
 
@@ -10,21 +7,28 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+
 import person.Address;
+import person.AgePref;
+import person.CareTimes;
 import person.DOB;
+import person.DomesticCare;
 import person.Name;
+import person.PersonalCare;
 import person.Sex;
 import person.Language;
 import person.Person;
 import person.Sex;
+import person.SexPref;
 import person.TelephoneNumber;
-import profile.AgePref;
-import profile.CareTimes;
-import profile.DomesticCare;
 import profile.Languages;
-import profile.PersonalCare;
 import profile.Profile;
-import profile.SexPref;
 
 
 /**
@@ -35,6 +39,7 @@ public class SysCoord {
 
       UserList aUserList = new UserList();
       StaffList aStafflist = new StaffList();
+//      Collection<Person> aStafflist = (Collection<Person>) new StaffList();
 
       public static void main(String[] args) throws IOException
     {
@@ -43,40 +48,107 @@ public class SysCoord {
     }
 public void load() throws IOException
     {
-
-	CareTimes careTimes = null;
-	Languages languagePref1 = new Languages("English");
-	Languages languagePref2 = new Languages("Spanish");
-    SexPref sexPref = null;
-    AgePref agePref = null;
-    PersonalCare personalCare1 = new PersonalCare("1");
-    PersonalCare personalCare2 = new PersonalCare("1");
-    DomesticCare domesticCare = null;
+	
+	MongoClient mongo = new MongoClient( "localHost" , 27017 );
+	
+	DB db = mongo.getDB("local");
+	DBCollection collection = db.getCollection("userCollection");
+	
+	
+//	
+//	CareTimes careTimes = null;
+//	Name aName = new Name("Mr", "John", "Smith");
+//	Address anAddress = new Address("1 the street", "townton", "London", "N1 1KL");
+//	Sex aSex = new Sex("Male");
+//    DOB aDob = new DOB (03, 1, 85);
+//	TelephoneNumber aNumber = new TelephoneNumber (68115);
+//	Languages languagePref1 = new Languages("English");
+//    SexPref sexPref = new SexPref("Male");
+//    AgePref agePref = new AgePref(18, 100);
+//    PersonalCare personalCare1 = new PersonalCare("washing");
+//    personalCare1.addCareType("cleaning");
+//    DomesticCare domesticCare = null;
+//    
+//	
+//	
+//	ServiceUser aServiceUser = new ServiceUser();
+//	
+//	BasicDBObject document = new BasicDBObject();
+//	document.put("aServiceUser", aServiceUser);
+//	collection.insert(document);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	System.out.println("All Persons: "+collection.getCount());
+	
+	    }
+	
+	
     
-	Profile aCarePlan1 = new Profile(careTimes, languagePref1,
-            sexPref, agePref, personalCare1,
-            domesticCare);
 	
 	
-	ServiceUser aServiceUser = new ServiceUser(null, aCarePlan1);
-	
-	Profile aCarePlan2 = new Profile(careTimes, languagePref2, sexPref, agePref, personalCare2, domesticCare);
-	
-	CareStaff aCareStaff = new CareStaff(null, aCarePlan2);
-	StaffList aStafflist = new StaffList();
-	aStafflist.addCareStaff(aCareStaff);
-	CareStaff aCareStaff2 = new CareStaff(null, aCarePlan2);
-	aStafflist.addCareStaff(aCareStaff2);
 	
 	
-	languagePref2.addLanguages("English");
 	
-	Matching match = new Matching(aServiceUser, aStafflist);
+	
+	
+	
+	
+
+
+//	CareTimes careTimes = null;
+//	Languages languagePref1 = new Languages("English");
+//	Languages languagePref2 = new Languages("Spanish");
+//    SexPref sexPref = null;
+//    AgePref agePref = null;
+//    PersonalCare personalCare1 = new PersonalCare("1");
+//    PersonalCare personalCare2 = new PersonalCare("1");
+//    DomesticCare domesticCare = null;
+//    
+//	Profile aCarePlan1 = new Profile(careTimes, languagePref1,
+//            sexPref, agePref, personalCare1,
+//            domesticCare);
+//	
+//	
+//	ServiceUser aServiceUser = new ServiceUser(null, aCarePlan1);
+//	
+//	Profile aCarePlan2 = new Profile(careTimes, languagePref2, sexPref, agePref, personalCare2, domesticCare);
+//	
+//	Person aCareStaff = new CareStaff(null, aCarePlan2);
+//	StaffList aStafflist = new StaffList();
+//	aStafflist.addCareStaff(aCareStaff);
+//	CareStaff aCareStaff2 = new CareStaff(null, aCarePlan2);
+//	aStafflist.addCareStaff(aCareStaff2);
+//	
+//	
+//	languagePref2.addLanguages("English");
+//	
+//	Matching match = new Matching(aServiceUser, aStafflist);
+//	
+//	
+//  StringBuilder result = null;
+//  Iterator<Person> iterator = ((Collection<Person>) aStafflist).iterator();
+//
+//  while (iterator.hasNext())
+//  {
+//      aCareStaff = iterator.next();
+//      String personString = aCareStaff.toString();
+//      result = result.append(personString).append("\r\n");
+//      System.out.println(result);
+//
+//  }
+	
     
 //	System.out.println(aStafflist.toString());
 
       
-    }
+//    }
 
 public void newPerson()
 {
@@ -107,10 +179,10 @@ public void newPerson()
     String lang = "english";
     Language languages1 = new Language(lang);
 
-    Person aPerson1 = new Person(name1, address1, sex1, dob1, tel1, languages1);
+//    Person aPerson1 = new Person(name1, address1, sex1, dob1, tel1, languages1, null, null, null);
     
     UserList newList = new UserList();
-    newList.addServiceUser(aPerson1);
+//    newList.addServiceUser(aPerson1);
 
     String title2 = "mr";
     String first2 = "first2";
@@ -139,10 +211,10 @@ public void newPerson()
     String lang2 ="english";
     Language languages2 = new Language(lang);
 
-    Person aPerson2 = new Person(name2, address2, sex2, dob2, tel2, languages2);
+//    Person aPerson2 = new Person(name2, address2, sex2, dob2, tel2, languages2, null, null, null);
 
 
-    newList.addServiceUser(aPerson2);
+//    newList.addServiceUser(aPerson2);
 
 System.out.println(newList);
 

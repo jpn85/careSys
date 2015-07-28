@@ -1,4 +1,4 @@
-package profile;
+package person;
 
 import java.util.ArrayList;
 import java.util.Collection;

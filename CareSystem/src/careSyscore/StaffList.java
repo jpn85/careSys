@@ -8,6 +8,7 @@ package careSyscore;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 
 import person.Person;
 
@@ -28,6 +29,7 @@ public class StaffList {
         //4
 
     }
+    
 
 
     Collection<Person> getCareStaff()
@@ -49,5 +51,10 @@ public class StaffList {
     {
         return "Staff List: " + staffList;
     }
+
+
+    
+    
+    
 
 }
