@@ -15,7 +15,7 @@ import java.util.Objects;
  * @author Jack
  * @param <_id>
  */
-public class Person<_id> implements Serializable
+public class Person implements Serializable
 {
 //attributes
 	
@@ -241,6 +241,14 @@ public void setPersonalCare(PersonalCare personalCare) {
     {
         return "Name: " + name + ". Address:" + " " + address + ". Gender:" + " " + sex + ". Date of birth:" + " " + dob + ". Telephone number: "  + String.valueOf(number) +". " + languages + '}';
     }
+
+	public SexPref getSexPref() {
+		return sexPref;
+	}
+
+	public void setSexPref(SexPref sexPref) {
+		this.sexPref = sexPref;
+	}
 
 
 
