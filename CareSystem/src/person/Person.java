@@ -13,10 +13,13 @@ import java.util.Objects;
 /**
  *person object
  * @author Jack
+ * @param <_id>
  */
 public class Person implements Serializable
 {
 //attributes
+	
+	
     /**
      * the name of the person
      */
@@ -46,11 +49,19 @@ public class Person implements Serializable
      * the languages of the person
      */
      public Language languages;
+     
+     public SexPref sexPref;
+     public AgePref agePref;
+     public DomesticCare domesticCare;
+     public PersonalCare personalCare;
+     
+     
 //constructors
 /**
  * initialises a new person object with the given attributes
  */
-public Person (Name aName,Address anAddress, Sex aSex, Date aDob, TelephoneNumber aNumber, Language aLanguages)
+public Person (Name aName,Address anAddress, Sex aSex, Date aDob, TelephoneNumber aNumber, Language aLanguages, 
+		SexPref aSexPref, AgePref anAgePref, DomesticCare aDomesticCare, PersonalCare apersonalCare)
 
     {
     name = aName;
@@ -59,6 +70,10 @@ public Person (Name aName,Address anAddress, Sex aSex, Date aDob, TelephoneNumbe
     dob = aDob;
     number = aNumber;
     languages = aLanguages;
+    sexPref = aSexPref;
+    agePref = anAgePref;
+    domesticCare = aDomesticCare;
+    personalCare = apersonalCare;
 }
 
 public long getCurrentAgeToday()
@@ -96,15 +111,7 @@ public Person getPerson()
 //        number = aPerson.getNumber();
 //        languages = aPerson.getLanguages();
 //    }
-/**
- * initialises a new Person object with the given name
- * and all other parameters set to null
- * @param aName
- */
-//    public Person(Name aName)
-//    {
-//                this(aName, null, null, null, null, null);
-//    }
+
 /**
  * initialises a new Person object with
  * all parameters set to null
@@ -112,13 +119,37 @@ public Person getPerson()
  */
     public Person()
     {
-        this (null, null, null, null, null, null);
+        this (null, null, null, null, null, null, null, null, null, null);
     }
 
 
 
 
-    public Name getName()
+    public AgePref getAgePref() {
+	return agePref;
+}
+
+public void setAgePref(AgePref agePref) {
+	this.agePref = agePref;
+}
+
+public DomesticCare getDomesticCare() {
+	return domesticCare;
+}
+
+public void setDomesticCare(DomesticCare domesticCare) {
+	this.domesticCare = domesticCare;
+}
+
+public PersonalCare getPersonalCare() {
+	return personalCare;
+}
+
+public void setPersonalCare(PersonalCare personalCare) {
+	this.personalCare = personalCare;
+}
+
+	public Name getName()
     {
         return name;
 
@@ -210,6 +241,14 @@ public Person getPerson()
     {
         return "Name: " + name + ". Address:" + " " + address + ". Gender:" + " " + sex + ". Date of birth:" + " " + dob + ". Telephone number: "  + String.valueOf(number) +". " + languages + '}';
     }
+
+	public SexPref getSexPref() {
+		return sexPref;
+	}
+
+	public void setSexPref(SexPref sexPref) {
+		this.sexPref = sexPref;
+	}
 
 
 

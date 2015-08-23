@@ -7,6 +7,7 @@ package careSyscore;
 
 import java.sql.Time;
 
+import person.Hours;
 import person.Person;
 import profile.Profile;
 
@@ -17,20 +18,36 @@ import profile.Profile;
 public class CareStaff extends Person
 {
     public Person person;
-    public Time workingHours;
-    public Profile profile;
+    public Hours workingHours;
 
 
-    public CareStaff(Person person, Profile aProfile)
+    public CareStaff(Person person, Hours aWorkingHours)
     {
         this.person = person;
-        profile = aProfile;
+        workingHours = aWorkingHours;
     }
 
-    Profile getProfile()
-    {
-        return profile;
-    }
+
+	public Person getPerson() {
+		return person;
+	}
+
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+
+	public Hours getWorkingHours() {
+		return workingHours;
+	}
+
+
+	public void setWorkingHours(Hours workingHours) {
+		this.workingHours = workingHours;
+	}
+
+  
     
 
 }

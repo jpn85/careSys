@@ -6,12 +6,10 @@
 package careSyscore;
 
 import person.*;
-import profile.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,49 +19,34 @@ import java.util.List;
 public class Matching
 
 {
-	public ServiceUser theServiceUser;
-	public CareStaff theCareStaff;
+	public Person theServiceUser;
+	public Person theCareStaff;
 	public int personalCareMatches;
 	public int domesticCareMatches;
 	public int languagesMatches;
 	public StaffList theStaffList;
 
-	public Matching(ServiceUser aServiceUser, StaffList aStaffList) {
+	public Matching(Person aServiceUser, StaffList aStaffList) {
 		theServiceUser = aServiceUser;
 		theStaffList = aStaffList;
 		
-//		for (Person aPerson : theStaffList)
-//			
-//		{
-//			System.out.println(theCareStaff);
-//		}
+
 		
 		
-      StringBuilder result = null;
-      Iterator<Person> iterator = theStaffList.iterator();
 
-      while (iterator.hasNext())
-      {
-          theCareStaff = iterator.next();
-          String personString = theCareStaff.toString();
-          result = result.append(personString).append("\r\n");
-          System.out.println(result);
-
-      }
 		
 
 	}
 
-	public int matchPersonalCare(ServiceUser aServiceUser, CareStaff aCareStaff) {
+	public int matchPersonalCare(Person aServiceUser, Person aCareStaff) {
 		theServiceUser = aServiceUser;
 		theCareStaff = aCareStaff;
 
-		Profile staffProfile = aCareStaff.getProfile();
-		PersonalCare staffCare = staffProfile.getPersonalCare();
+		PersonalCare userCare = theServiceUser.getPersonalCare();
+		PersonalCare staffCare = theCareStaff.getPersonalCare();
+		
+		
 		List<String> l1 = new ArrayList<String>(staffCare.getCare());
-
-		Profile userProfile = aServiceUser.getProfile();
-		PersonalCare userCare = userProfile.getPersonalCare();
 		List<String> l2 = new ArrayList<String>(userCare.getCare());
 
 		Collection<String> similar = new HashSet<String>(l1);
@@ -86,16 +69,15 @@ public class Matching
 		this.personalCareMatches = personalCareMatches;
 	}
 
-	public int matchDomesticCare(ServiceUser aServiceUser, CareStaff aCareStaff) {
+	public int matchDomesticCare(Person aServiceUser, Person aCareStaff) {
 		theServiceUser = aServiceUser;
 		theCareStaff = aCareStaff;
 
-		Profile staffProfile = aCareStaff.getProfile();
-		DomesticCare staffCare = staffProfile.getDomesticCare();
+		DomesticCare userCare = theServiceUser.getDomesticCare();
+		DomesticCare staffCare = theCareStaff.getDomesticCare();
+		
+		
 		List<String> l1 = new ArrayList<String>(staffCare.getCare());
-
-		Profile userProfile = aServiceUser.getProfile();
-		DomesticCare userCare = userProfile.getDomesticCare();
 		List<String> l2 = new ArrayList<String>(userCare.getCare());
 
 		Collection<String> similar = new HashSet<String>(l1);
@@ -105,7 +87,6 @@ public class Matching
 
 		similar.retainAll(l2);
 		different.removeAll(similar);
-
 		setDomesticCareMatches(similar.size());
 		return similar.size();
 
@@ -119,16 +100,15 @@ public class Matching
 		this.domesticCareMatches = domesticCareMatches;
 	}
 
-	public int matchLanguages(ServiceUser aServiceUser, CareStaff aCareStaff) {
+	public int matchLanguages(Person aServiceUser, Person aCareStaff) {
 		theServiceUser = aServiceUser;
 		theCareStaff = aCareStaff;
+		
+		Language userLang = theServiceUser.getLanguages();
+		Language staffLang = theCareStaff.getLanguages();
 
-		Profile staffProfile = aCareStaff.getProfile();
-		Languages staffLang = staffProfile.getLanguagePref();
-		List<String> l1 = new ArrayList<String>(staffLang.getLanguages());
-
-		Profile userProfile = aServiceUser.getProfile();
-		Languages userLang = userProfile.getLanguagePref();
+		
+		List<String> l1 = new ArrayList<String>(staffLang.getLanguages());		
 		List<String> l2 = new ArrayList<String>(userLang.getLanguages());
 
 		Collection<String> similar = new HashSet<String>(l1);
@@ -140,25 +120,21 @@ public class Matching
 		different.removeAll(similar);
 
 		System.out.println(similar.size());
-		setlanguagesMatches(similar.size());
+		setLanguagesMatches(similar.size());
 		return similar.size();
 	}
 
-	private void setlanguagesMatches(int size) {
-		// TODO Auto-generated method stub
-		this.languagesMatches = size;
-	}
 
-	public boolean matchAge(ServiceUser aServiceUser, CareStaff aCareStaff) {
+
+	public boolean matchAge(Person aServiceUser, Person aCareStaff) {
 		theServiceUser = aServiceUser;
 		theCareStaff = aCareStaff;
 
-		Profile userProfile = aServiceUser.getProfile();
-		AgePref userAgePref = userProfile.getAgePref();
+		AgePref userAgePref = theServiceUser.getAgePref();
 		int max = userAgePref.getMax();
 		int min = userAgePref.getMin();
 
-		long age = theServiceUser.getCurrentAgeToday();
+		long age = theCareStaff.getCurrentAgeToday();
 
 		if (userAgePref == null || (age <= max && age >= min)) {
 			return true;
@@ -167,12 +143,12 @@ public class Matching
 		return false;
 	}
 
-	public boolean matchSex(ServiceUser aServiceUser, CareStaff aCareStaff) {
+	public boolean matchSex(Person aServiceUser, Person aCareStaff) {
 		theServiceUser = aServiceUser;
 		theCareStaff = aCareStaff;
 
-		Profile userProfile = aServiceUser.getProfile();
-		String userSexPref = userProfile.getSexPref();
+//		Profile userProfile = aServiceUser.getProfile();
+		String userSexPref = theServiceUser.getSexPref().toString();
 
 		String staffSex = theCareStaff.getSex();
 
@@ -182,5 +158,40 @@ public class Matching
 
 		return false;
 	}
+
+	public Person getTheServiceUser() {
+		return theServiceUser;
+	}
+
+	public void setTheServiceUser(Person theServiceUser) {
+		this.theServiceUser = theServiceUser;
+	}
+
+	public Person getTheCareStaff() {
+		return theCareStaff;
+	}
+
+	public void setTheCareStaff(Person theCareStaff) {
+		this.theCareStaff = theCareStaff;
+	}
+
+	public int getLanguagesMatches() {
+		return languagesMatches;
+	}
+
+	public void setLanguagesMatches(int languagesMatches) {
+		this.languagesMatches = languagesMatches;
+	}
+
+	public StaffList getTheStaffList() {
+		return theStaffList;
+	}
+
+	public void setTheStaffList(StaffList theStaffList) {
+		this.theStaffList = theStaffList;
+	}
+	
+	
+	
 
 }

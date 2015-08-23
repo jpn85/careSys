@@ -6,28 +6,28 @@ import java.util.HashSet;
 
 import org.joda.time.LocalTime;
 
-public class Hours 
+public class ShiftTimes 
 
 {
-	public Collection<LocalTime> hours;
+	public Collection<LocalTime> shiftTimes;
 	public LocalTime start;
 	public LocalTime end;
 
-	public Hours() 
+	public ShiftTimes() 
 	{
-		hours = new HashSet<LocalTime>();
+		shiftTimes = new HashSet<LocalTime>();
 	}
 	
 	public void addStart(LocalTime aLocalTime) 
 	{
 		start = aLocalTime;
-		hours.add(aLocalTime);
+		shiftTimes.add(aLocalTime);
 	}
 	
 	public void addEnd(LocalTime aLocalTime) 
 	{
 		end = aLocalTime;
-		hours.add(aLocalTime);
+		shiftTimes.add(aLocalTime);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class Hours
 	{
 		
 		
-		return "Hours [start=" + start + ", end=" + end + "]";
+		return "ShiftTimes [start=" + start + ", end=" + end + "]";
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class Hours
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Hours other = (Hours) obj;
+		ShiftTimes other = (ShiftTimes) obj;
 		if (end == null) {
 			if (other.end != null)
 				return false;
