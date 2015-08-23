@@ -5,7 +5,7 @@
 
 package profile;
 
-import person.AgePref;
+//import person.AgePref;
 import person.CareTimes;
 import person.DomesticCare;
 import person.PersonalCare;
